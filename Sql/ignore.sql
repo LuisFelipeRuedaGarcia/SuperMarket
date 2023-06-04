@@ -31,3 +31,16 @@ INSERT INTO Clientes (ClienteId, Celular, Company)
 VALUES (1, 3145768618, "Claro");
 
 ALTER TABLE Clientes MODIFY COLUMN Celular VARCHAR(14) NOT NULL;
+
+
+CREATE TABLE Empleados(
+    EmpleadoId INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(50) NOT NULL,
+    Celular VARCHAR(14) NOT NULL,
+    Direccion VARCHAR(70) NOT NULL,
+    Imagen BLOB
+
+);
+
+INSERT INTO Empleados (EmpleadoId, Nombre, Celular, Direccion, Imagen)
+VALUES (1, "Lu", "3145768618", "Campus", 1);
