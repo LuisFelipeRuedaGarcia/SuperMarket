@@ -8,10 +8,10 @@ error_reporting(E_ALL);
 echo 1;
 if(isset($_GET["id"])){
     echo 2;
-    require_once("Config.php");
-    $config = New Config();
-    $config->CategoriaId = $_GET["id"];
-    $config->delete();
+    require_once("Categoria.php");
+    $Categoria = New Categoria();
+    $Categoria->CategoriaId = $_GET["id"];
+    $Categoria->delete();
 echo "<script>
 alert('Categoria Eliminada');
 document.location='Categorias.php'</script>";

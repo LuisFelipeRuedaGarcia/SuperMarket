@@ -6,17 +6,17 @@ ini_set("display_startup_errors", 1);
 error_reporting(E_ALL);
 
 if (isset($_POST["Guardar"])){
-    require_once("Config.php");
+    require_once("Categoria.php");
 
-    $config = new Config(/* $_POST["Nombre"],$_POST["Descripcion"],$_POST["Imagen"] */);
-/*     $config->setNombre($_POST["Nombre"]);
-    $config->setDescripcion($_POST["Descripcion"]);
-    $config->setImagen($_POST["Imagen"]); */
+    $Categoria = new Categoria(/* $_POST["Nombre"],$_POST["Descripcion"],$_POST["Imagen"] */);
+/*     $Categoria->setNombre($_POST["Nombre"]);
+    $Categoria->setDescripcion($_POST["Descripcion"]);
+    $Categoria->setImagen($_POST["Imagen"]); */
     
-    $config->Nombre = $_POST["Nombre"];
-    $config->Descripcion =$_POST["Descripcion"];
-    $config->Imagen =$_POST["Imagen"];
-    $config->insertData();
+    $Categoria->Nombre = $_POST["Nombre"];
+    $Categoria->Descripcion =$_POST["Descripcion"];
+    $Categoria->Imagen =$_POST["Imagen"];
+    $Categoria->insertData();
     echo "<script>
     alert('categoría registrada exitosamente' );
     document.location='Categorias.php';

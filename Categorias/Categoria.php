@@ -1,21 +1,20 @@
 <?php
-require_once("Db.php");
-class Config{
+require_once("../Config/Conectar.php");
+class Categoria extends Conectar{
     private $CategoriaId;
     private $Nombre;
     private $Descripcion;
     private $Imagen;
-    protected $DbCnx;
+/*     protected $DbCnx; */
 
     
-    public function __construct($Nombre=null, $Descripcion=null, $Imagen=null, $CategoriaId=0){
+    public function __construct($Nombre=null, $Descripcion=null, $Imagen=null, $CategoriaId=0, $DbCnx=""){
         $this->CategoriaId=$CategoriaId;
         $this->Nombre=$Nombre;
         $this->Descripcion=$Descripcion;
         $this->Imagen=$Imagen;
-        $this->DbCnx= new PDO(DB_TYPE.":host=".DB_HOST.";dbname=".DB_NAME,DB_USER,DB_PWD,
-      [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]  
-    );
+        parent::__construct($DbCnx);
+    
     }
     public function  __get($property)
     {
@@ -73,16 +72,34 @@ class Config{
         }
     }
 
-public function delete(){
-    try {
-        $stm = $this->DbCnx->prepare("DELETE  FROM Categorias WHERE CategoriaId = ?");
-        $stm->execute([$this->CategoriaId]);
-        
-    } catch (Exception $e) {
-        return $e->getMessage();
+    public function delete(){
+        try {
+            $stm = $this->DbCnx->prepare("DELETE  FROM Categorias WHERE CategoriaId = ?");
+            $stm->execute([$this->CategoriaId]);
+            
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
     }
-}
 
+    public function getOne(){
+        try {
+            $stm = $this->DbCnx->prepare("SELECT * FROM Categorias WHERE CategoriaId = ?");
+            $stm->execute([$this->CategoriaId]);
+            return $stm->fetchAll();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function update(){
+        try {
+            $stm = $this->DbCnx->prepare("UPDATE  Categorias SET Nombre = ?, Descripcion = ?, Imagen = ? WHERE CategoriaId = ?");
+            $stm->execute([$this->Nombre, $this->Descripcion, $this->Imagen,$this->CategoriaId]);
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
 }
 
 /* $config = new Config(1,2,3,4,5);

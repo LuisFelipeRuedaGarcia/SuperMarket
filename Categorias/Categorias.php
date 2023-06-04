@@ -1,7 +1,7 @@
 <?php
-require_once("Config.php");
-$Config = new Config();
-$AllData = $Config->GetAll();
+require_once("Categoria.php");
+$Categoria = new Categoria();
+$AllData = $Categoria->GetAll();
 
 ?>
 <!DOCTYPE html>
@@ -66,7 +66,8 @@ echo var_dump($AllData);
               <th scope="col">NOMBRE</th>
               <th scope="col">DESCRIPCION</th>
               <th scope="col">IMAGEN</th>
-              <th scope="col">DETALLE</th>
+              <th scope="col">EDITAR</th>
+              <th scope="col">ELIMINAR</th>
             </tr>
           </thead>
           <tbody class="" id="tabla">
@@ -88,6 +89,11 @@ echo var_dump($AllData);
             "</td>
             <td>" .$val["Imagen"].
             "</td>
+            <td>
+            <a type='button' class='btn btn-warning'  name='Editar' href='EditarCategoria.php?id=".
+            $val["CategoriaId"].
+          "&req=edit'>Editar</a>
+            </td>
             <td>
             <a type='button' class='btn btn-danger'  name='Eliminar' href='BorrarCategoria.php?id=".
             $val["CategoriaId"].
