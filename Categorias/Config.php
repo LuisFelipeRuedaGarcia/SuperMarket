@@ -1,15 +1,15 @@
 <?php
 require_once("Db.php");
 class Config{
-    private $IdCategoria;
+    private $CategoriaId;
     private $Nombre;
     private $Descripcion;
     private $Imagen;
     protected $DbCnx;
 
     
-    public function __construct($Nombre=null, $Descripcion=null, $Imagen=null, $IdCategoria=0){
-        $this->IdCategoria=$IdCategoria;
+    public function __construct($Nombre=null, $Descripcion=null, $Imagen=null, $CategoriaId=0){
+        $this->CategoriaId=$CategoriaId;
         $this->Nombre=$Nombre;
         $this->Descripcion=$Descripcion;
         $this->Imagen=$Imagen;
@@ -28,11 +28,11 @@ class Config{
             $this->$property = $value;
         }
     }
-/*     public function setIdCategoria($idCategoria){
-        $this->idCategoria = $idCategoria;
+/*     public function setCategoriaId($CategoriaId){
+        $this->CategoriaId = $CategoriaId;
     }
-    public function getIdCategoria(){
-        return $this->idCategoria;
+    public function getCategoriaId(){
+        return $this->CategoriaId;
     } */
 
     /* public function setNombre($Nombre){
@@ -62,6 +62,27 @@ class Config{
         }
     
     }
+
+    public function GetAll(){
+        try {
+            $stm = $this->DbCnx->prepare("SELECT * FROM Categorias");
+            $stm->execute(); 
+            return $stm->fetchAll();
+        } catch (Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+public function delete(){
+    try {
+        $stm = $this->DbCnx->prepare("DELETE  FROM Categorias WHERE CategoriaId = ?");
+        $stm->execute([$this->CategoriaId]);
+        
+    } catch (Exception $e) {
+        return $e->getMessage();
+    }
+}
+
 }
 
 /* $config = new Config(1,2,3,4,5);
@@ -69,8 +90,8 @@ class Config{
  $config->Nombre = 0;
  echo $config->Nombre;
 
- echo $config->IdCategoria;
- $config->IdCategoria = 0;
- echo $config->IdCategoria;
+ echo $config->CategoriaId;
+ $config->CategoriaId = 0;
+ echo $config->CategoriaId;
  */
 ?>

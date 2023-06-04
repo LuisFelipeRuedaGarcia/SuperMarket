@@ -1,3 +1,9 @@
+<?php
+require_once("Config.php");
+$Config = new Config();
+$AllData = $Config->GetAll();
+
+?>
 <!DOCTYPE html>
 <html>
 
@@ -19,6 +25,10 @@
 </head>
 
 <body>
+<?php
+echo var_dump($AllData);
+
+?>
   <div class="contenedor">
 
     <div class="parte-izquierda">
@@ -49,7 +59,7 @@
         <button class="btn-m" data-bs-toggle="modal" data-bs-target="#RegistrarCategoria"><i class="bi bi-person-add " style="color: rgb(255, 255, 255);" ></i></button>
       </div>
       <div class="menuTabla contenedor2">
-        <table class="table table-custom ">
+        <table class="table table-custom table-striped">
           <thead>
             <tr>
               <th scope="col">ID</th>
@@ -62,8 +72,32 @@
           <tbody class="" id="tabla">
 
             <!-- ///////Llenado DInamico desde la Base de Datos -->
-         
-       
+            <tr>
+
+
+            <?php
+              foreach($AllData as $key => $val){
+
+                echo "<tr>
+                <td>".
+              $val["CategoriaId"].
+            "</td>
+            <td>".$val["Nombre"]."
+            </td>
+            <td>".$val["Descripcion"].
+            "</td>
+            <td>" .$val["Imagen"].
+            "</td>
+            <td>
+            <a type='button' class='btn btn-danger'  name='Eliminar' href='BorrarCategoria.php?id=".
+            $val["CategoriaId"].
+          "&req=delete'>Eliminar</a>
+            </td>
+            </tr>";
+
+              }
+
+            ?>
 
           </tbody>
         
@@ -122,7 +156,6 @@
                   id="Imagen"
                   name="Imagen"
                   class="form-control"  
-                 
                 />
               </div>
 
