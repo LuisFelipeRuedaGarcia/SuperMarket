@@ -51,3 +51,20 @@ CREATE TABLE Proveedores(
     Telefono VARCHAR(14) NOT NULL,
     Ciudad VARCHAR(20) NOT NULL
 );
+
+
+/* CREATE TABLE Facturas(
+    FacturaId INT PRIMARY KEY AUTO_INCREMENT,
+    EmpleadoId INT NOT NULL,
+    ClienteId INT NOT NULL,
+    Fecha VARCHAR(50) NOT NULL
+); */
+
+CREATE TABLE Facturas(
+    FacturaId INT PRIMARY KEY AUTO_INCREMENT,
+    EmpleadoId INT NOT NULL,
+    ClienteId INT NOT NULL,
+    Fecha VARCHAR(50) NOT NULL,
+    FOREIGN KEY (EmpleadoId) REFERENCES Empleados(EmpleadoId),
+    FOREIGN KEY (ClienteId) REFERENCES Clientes(ClienteId)
+);
