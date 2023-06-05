@@ -44,3 +44,10 @@ CREATE TABLE Empleados(
 
 INSERT INTO Empleados (EmpleadoId, Nombre, Celular, Direccion, Imagen)
 VALUES (1, "Lu", "3145768618", "Campus", 1);
+
+CREATE TABLE Proveedores(
+    ProveedorId INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(50) NOT NULL,
+    Telefono VARCHAR(14) NOT NULL,
+    Ciudad VARCHAR(20) NOT NULL
+);
