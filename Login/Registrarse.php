@@ -13,10 +13,18 @@ echo "<br>username = ".$registrar->username;
 
 echo "<br>password = ".$registrar->password; */
 
-$registrar->insertData();
+if($registrar->CheckUser($_POST["email"])){
+
 echo "<script>
-alert('Usuario registrado exitosamente' );
+alert('Usuario  YA existente, por favor logueate' );
 document.location='loginRegister.php';
 </script>
 ";
+}else{
+    $registrar->insertData();
+    echo "<script>
+alert('Usuario registrado exitosamente');
+document.location='../Home/home.php';
+</script>";
+}
 ?>
