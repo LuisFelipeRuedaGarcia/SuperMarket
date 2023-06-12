@@ -83,6 +83,11 @@ CREATE TABLE Productos(
     FOREIGN KEY (ProveedorId) REFERENCES Proveedores(ProveedorId)
 );
 
-INSERT INTO Productos(
-    
-);
+Create Table Users(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    EmpleadoId INT NOT NULL,
+    email VARCHAR(80) NOT NULL,
+    username VARCHAR(80) NOT NULL,
+    password VARCHAR(60) NOT NULL,
+    FOREIGN KEY(EmpleadoId) REFERENCES Empleados(EmpleadoId)
+)
