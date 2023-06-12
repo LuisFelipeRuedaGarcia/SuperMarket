@@ -68,3 +68,21 @@ CREATE TABLE Facturas(
     FOREIGN KEY (EmpleadoId) REFERENCES Empleados(EmpleadoId),
     FOREIGN KEY (ClienteId) REFERENCES Clientes(ClienteId)
 );
+
+
+CREATE TABLE Productos(
+    ProductoId INT PRIMARY KEY AUTO_INCREMENT,
+    CategoriaId INT NOT NULL,
+    PrecioUnitario INT NOT NULL,
+    Stock INT NOT NULL,
+    UnidadesPedidas INT NOT NULL,
+    ProveedorId INT NOT NULL,
+    Nombre VARCHAR(50) NOT NULL,
+    Descontinuado INT NOT NULL,
+    FOREIGN KEY (CategoriaId) REFERENCES Categorias(CategoriaId),
+    FOREIGN KEY (ProveedorId) REFERENCES Proveedores(ProveedorId)
+);
+
+INSERT INTO Productos(
+    
+);

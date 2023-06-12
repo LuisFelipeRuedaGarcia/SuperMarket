@@ -35,7 +35,6 @@ if ($stmt->affected_rows > 0) {
 } else {
     echo "Error al insertar la imagen.";
 }
-
 // Cerrar la conexión y liberar recursos
 $stmt->close();
 $conn->close();
